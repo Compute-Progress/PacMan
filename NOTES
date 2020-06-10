@@ -1,0 +1,31 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    NOTES                                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jjosephi <jjosephi@student.42.us.org>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/06/10 13:12:22 by jjosephi          #+#    #+#              #
+#    Updated: 2020/06/10 13:12:22 by jjosephi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+-----------------------------------------------------------------------------
+06/10/20
+
+- Code structure is as follows :
+
+- Classes :
+	- Entities
+		|
+		|____ Objects
+		|		| Wall, Pellets, Cherries
+		|
+		|____ Panws
+				|
+				|___Ghosts
+				|
+				Player
+
+Pawns will have an update which move them. Only player will check for collisions (2 tiles ahead)
+Map in file or 2D Arrary?
