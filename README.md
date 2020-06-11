@@ -4,7 +4,7 @@ PacMan Todo list
 -------------------------
 
 - [ ] Learn to use SDL
-* Figure out classes
+*Figure out classes
     - [ ] classes
     - [ ]inheritance
     - [ ] constructors?
@@ -16,12 +16,12 @@ PacMan Todo list
 - [ ] Create and parse map
 - [ ] Display Map
 - [ ] Entities class
-- * Pawn Class
+*Pawn Class
     - [ ] Movement method
     - [ ] Wall collision
-- * Player class
+*Player class
     - [ ] Enemy collision
-- * Ghost class
+*Ghost class
     - [ ] Chase behavior
     - [ ] Scurry Behavior
     - [ ] Frightened Behavior
@@ -39,7 +39,7 @@ PacMan Todo list
 - [ ] Scoreboard
 - [ ] More ghosts
 - [ ] Diff maps
-- * 2 player mode
+*2 player mode
     - [ ] Co-Op
     - [ ] Vs
 - [ ] AI PacMan?
