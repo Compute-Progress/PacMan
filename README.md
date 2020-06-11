@@ -4,9 +4,9 @@ PacMan Todo list
 -------------------------
 
 - [ ] Learn to use SDL
-- [_] Figure out classes
+- _[ ] Figure out classes
     - [ ] classes
-    - []inheritance
+    - [ ]inheritance
     - [ ] constructors?
     - [ ] destructor (actually useful so we don't need to a separate script to free)
     - [ ] polymorphism
