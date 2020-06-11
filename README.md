@@ -4,7 +4,7 @@ PacMan Todo list
 -------------------------
 
 - [ ] Learn to use SDL
-- _[ ] Figure out classes
+- [ ] Figure out classes
     - [ ] classes
     - [ ]inheritance
     - [ ] constructors?
