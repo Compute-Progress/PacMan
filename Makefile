@@ -1,0 +1,1 @@
+gcc -I incl -L lib -l SDL2-2.0.0

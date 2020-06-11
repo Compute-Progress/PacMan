@@ -29,3 +29,12 @@
 
 Pawns will have an update which move them. Only player will check for collisions (2 tiles ahead)
 Map in file or 2D Arrary?
+
+-----------------------------------
+06/11/20
+
+Scratch all of the above. There are mor fundamental things I need to learn before even thinking about structure or 
+how the map will be.
+Not sure if I will fully implement classes (similar to C++), or only what I need from them. In theory I could just figure out
+constructors and destructors and make each ghost an instance of Ghosts and provide a pointer to their movement function.
+I also need to learn about tokenization, though there may be other way to do polymorphism...
