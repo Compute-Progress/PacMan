@@ -50,3 +50,5 @@ May not actually need overloads.
 ---------------------------------
 Vm.... slow.... sometimes....... veeeeery slowwwwwwwwww
 Still unsure if I should actaully use a Master struct . I could just have all of these variables in the main;
+=======
+I also need to learn about tokenization...
