@@ -33,8 +33,20 @@ Map in file or 2D Arrary?
 -----------------------------------
 06/11/20
 
-Scratch all of the above. There are mor fundamental things I need to learn before even thinking about structure or 
+Scratch all of the above. There are mor fundamental things I need to learn before even thinking about structure or
 how the map will be.
 Not sure if I will fully implement classes (similar to C++), or only what I need from them. In theory I could just figure out
 constructors and destructors and make each ghost an instance of Ghosts and provide a pointer to their movement function.
 I also need to learn about tokenization, though there may be other way to do polymorphism...
+
+----------------------------------
+Have a good enough understanding of classes and tokenization now...
+STructure is not as easy as it sounds. What is the best way to do things? It seems like there's a hundred different ones
+I decided to have classes with constructors and destructors, but with no variable types;
+I wonder if it's possible to do overloads...spoiler : it is, just looks a bit complicated
+Common update() function to take vector2  calculated from child's own function;
+May not actually need overloads.
+
+---------------------------------
+Vm.... slow.... sometimes....... veeeeery slowwwwwwwwww
+Still unsure if I should actaully use a Master struct . I could just have all of these variables in the main;

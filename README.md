@@ -10,7 +10,7 @@ PacMan Todo list
     - [ ] constructors?
     - [ ] destructor (actually useful so we don't need to a separate script to free)
     - [ ] polymorphism
-- [ ] Macro Magic (Tokenization)
+- [x] Macro Magic (Tokenization)
 -------------------------
 
 - [ ] Create and parse map
