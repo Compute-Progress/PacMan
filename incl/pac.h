@@ -1,10 +1,13 @@
 #ifndef PAC_H
 # define PAC_H
 
-# include <SDL2/SDL.h>
+# include "SDL.h"
+# include "SDL_image.h"
 # include "pac_struct.h"
 # include <stdio.h>
 # include <math.h>
+
+#define WIN_SIZE 500
 
 /***** File : level_funcs.c *****/
 
@@ -14,10 +17,9 @@ int lvl_loop(Master *game);
 /*****        ********       *******/
 
 /****** File : init.c */
-
-Master *init_game();
+void init_game(Master *game);
 void	init_lvl(Master *game);
-void	init_menu(Master *game);
+void	init_menu(Master *game, SDL_Texture *arrow, Vector2* pos);
 
 /******* File : render.c *********/
 

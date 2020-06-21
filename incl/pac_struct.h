@@ -1,7 +1,11 @@
 #ifndef PAC_STRUCT_H
 # define PAC_STRUCT_H
 
-typedef int(*state_update)();
+struct s_game_state;
+
+typedef struct  s_game_state Master;
+
+typedef int(*state_update)(Master);
 
 struct s_entities;
 
@@ -23,8 +27,9 @@ typedef void(*ghost_update)(Entities entities, Coordinates coord, Vector2 target
 typedef struct s_pawn
 {
     char **map;
-	char *texture;
+	char **texture;
 	Coordinates coorddinates;
+	int tex_index;
 }				Pawn;
 
 typedef struct s_player
@@ -46,13 +51,16 @@ struct s_entities
 	Player *player;
 };
 
-typedef struct  s_game_state
+struct  s_game_state
 {
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+	SDL_Texture *background;
+
 	Entities *entities;
 	int state;
-    char *render;
 	state_update loops[4];
 	state_update loop;
-}               Master;
+};
 
 #endif

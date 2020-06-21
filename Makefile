@@ -1,1 +1,7 @@
-gcc -I incl -L lib -l SDL2-2.0.0
+NAME = pac_man
+FILES = init main updates level_funcs
+
+all : $(NAME)
+
+$(NAME) :
+	gcc -I incl/ -L ~/.brew/lib -l SDL2 -l sdl2_image srcs/*.c

@@ -52,3 +52,6 @@ Vm.... slow.... sometimes....... veeeeery slowwwwwwwwww
 Still unsure if I should actaully use a Master struct . I could just have all of these variables in the main;
 =======
 I also need to learn about tokenization...
+-----------------------
+Is it better to load all textures once the game starts or everytime the level starts?...
+I'm afraid I don't know the answer... yet.
