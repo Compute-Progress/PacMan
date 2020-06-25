@@ -38,9 +38,8 @@ int menu_loop(Master *game)
 					case SDL_SCANCODE_SPACE:
 						if (index == 0)
 							return 1;
-						else return 3;
+						//else if return 3;
 				}
-
             }
         }
 		arrow.y = pos[index].y;
@@ -48,11 +47,41 @@ int menu_loop(Master *game)
         SDL_RenderCopy(game->renderer, game->background, NULL, NULL);
         SDL_RenderCopy(game->renderer, arrow_tex, NULL, &arrow);
 		SDL_RenderPresent(game->renderer);
-
     }
 }
 
-/* int lvl_loop(Master *game)
+int lvl_loop(Master *game)
 {
+	init_lvl(game);
+	int input;
 
-} */
+	init_player(game);
+	while (1)
+	{
+		SDL_Event e;
+		while (SDL_PollEvent(&e)) {
+            switch (e.type) {
+
+            case SDL_QUIT:
+				exit(0);
+			case SDL_KEYDOWN :
+				switch (e.key.keysym.scancode)
+				{
+					default :
+						break ;
+					case SDL_SCANCODE_UP:
+						input = 2;
+					case SDL_SCANCODE_DOWN:
+						input = 3;
+					case SDL_SCANCODE_RIGHT:
+						input = 0;
+					case SDL_SCANCODE_LEFT:
+						input = 1;
+				}
+            }
+        }
+		update_player(game, input);
+		SDL_RenderPresent(game->renderer);
+		SDL_RenderClear(game->renderer);
+	}
+}

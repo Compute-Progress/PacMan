@@ -17,7 +17,7 @@ int main()
 	while (1)
 	{
 		//menu_loop(&Game);
-		 if ((new_state = Game.loop(Game)) == 3)
+		 if ((new_state = Game.loop(&Game)) == 3)
 			break ;
 		Game.loop = Game.loops[new_state];
 	}

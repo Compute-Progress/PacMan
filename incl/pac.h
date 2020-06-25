@@ -17,8 +17,9 @@ int lvl_loop(Master *game);
 /*****        ********       *******/
 
 /****** File : init.c */
-void init_game(Master *game);
+void	init_game(Master *game);
 void	init_lvl(Master *game);
+void init_player(Master *game);
 void	init_menu(Master *game, SDL_Texture *arrow, Vector2* pos);
 
 /******* File : render.c *********/
@@ -26,5 +27,9 @@ void	init_menu(Master *game, SDL_Texture *arrow, Vector2* pos);
 void	draw_background(char *bg);
 void	draw_image(char *img, Vector2 positon);
 
+/******* File : updates.x *******/
+void	update_player(Master *game, int input);
+
+void parse_map(Master *game);
 
 #endif

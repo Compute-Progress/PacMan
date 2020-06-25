@@ -5,7 +5,7 @@ struct s_game_state;
 
 typedef struct  s_game_state Master;
 
-typedef int(*state_update)(Master);
+typedef int(*state_update)(Master*);
 
 struct s_entities;
 
@@ -26,29 +26,37 @@ typedef void(*ghost_update)(Entities entities, Coordinates coord, Vector2 target
 
 typedef struct s_pawn
 {
-    char **map;
-	char **texture;
-	Coordinates coorddinates;
+	Coordinates coordinates;
+	Entities *friends_and_foes;
 	int tex_index;
 }				Pawn;
-
-typedef struct s_player
-{
-	Pawn parent;
-	struct moving_pawns *friends_and_foes;
-    int state;
-}				Player;
 
 typedef struct s_ghost
 {
 	Pawn parent;
+
 	Vector2 target;
+	Vector2 tiles[4][2];
+
+	SDL_Texture *texture;
 }				Ghost;
+
+typedef struct s_player
+{
+	Pawn parent;
+
+	SDL_Texture *texture;
+	SDL_Rect hitbox;
+
+	Vector2 idle;
+	Vector2 tiles[4][2];
+}				Player;
 
 struct s_entities
 {
-	Ghost  *ghost[4];
-	Player *player;
+	Ghost  ghost[4];
+	Player player;
+	char map[30][29];
 };
 
 struct  s_game_state
@@ -57,8 +65,7 @@ struct  s_game_state
 	SDL_Renderer *renderer;
 	SDL_Texture *background;
 
-	Entities *entities;
-	int state;
+	Entities entities;
 	state_update loops[4];
 	state_update loop;
 };
