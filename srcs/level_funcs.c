@@ -4,6 +4,7 @@ int menu_loop(Master *game)
 {
 	SDL_Texture *arrow_tex;
 	SDL_Surface *surface;
+	SDL_Scancode input;
 	SDL_Rect arrow;
 	Vector2 pos[2];
 	int index;
@@ -27,19 +28,18 @@ int menu_loop(Master *game)
             case SDL_QUIT:
 				exit(0);
 			case SDL_KEYDOWN :
-				switch (event.key.keysym.scancode)
-				{
-					default :
-						break ;
-					case SDL_SCANCODE_UP:
+				input = event.key.keysym.scancode;
+
+					if (input == SDL_SCANCODE_UP)
 						(index == 1) ? (index = 0) : (index = 1);
-					case SDL_SCANCODE_DOWN:
+					else if (input == SDL_SCANCODE_DOWN)
 						(index == 0) ? (index = 1) : (index = 0);
-					case SDL_SCANCODE_SPACE:
+					else if (input == SDL_SCANCODE_SPACE)
+					{
 						if (index == 0)
 							return 1;
-						//else if return 3;
-				}
+						else exit(0);
+					}
             }
         }
 		arrow.y = pos[index].y;
