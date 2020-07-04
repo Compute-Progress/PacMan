@@ -53,9 +53,8 @@ int menu_loop(Master *game)
 int lvl_loop(Master *game)
 {
 	init_lvl(game);
-	int input;
-
-	init_player(game);
+	int input = -1;
+	SDL_Scancode in;
 	while (1)
 	{
 		SDL_Event e;
@@ -65,23 +64,21 @@ int lvl_loop(Master *game)
             case SDL_QUIT:
 				exit(0);
 			case SDL_KEYDOWN :
-				switch (e.key.keysym.scancode)
-				{
-					default :
-						break ;
-					case SDL_SCANCODE_UP:
-						input = 2;
-					case SDL_SCANCODE_DOWN:
-						input = 3;
-					case SDL_SCANCODE_RIGHT:
-						input = 0;
-					case SDL_SCANCODE_LEFT:
-						input = 1;
-				}
-            }
+				in = e.key.keysym.scancode;
+				if (in == SDL_SCANCODE_UP)
+					input = 2;
+				else if (in == SDL_SCANCODE_DOWN)
+					input = 3;
+				else if (in == SDL_SCANCODE_RIGHT)
+					input = 0;
+				else if (in == SDL_SCANCODE_LEFT)
+					input = 1;
+			}
         }
-		update_player(game, input);
-		SDL_RenderPresent(game->renderer);
 		SDL_RenderClear(game->renderer);
+		SDL_RenderCopy(game->renderer, game->background, NULL, NULL);
+		update_player(game, input);
+		//printf("END\n");
+		SDL_RenderPresent(game->renderer);
 	}
 }

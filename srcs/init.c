@@ -17,7 +17,7 @@ void init_player(Master *game)
 	SDL_Texture *inter;
 	SDL_Rect rect;
 
-	surf = IMG_Load("imgs/SpriteSheet");
+	surf = IMG_Load("imgs/SpriteSheet.png");
 	inter = SDL_CreateTexture(game->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, WIN_SIZE, WIN_SIZE);
 	tex = SDL_CreateTextureFromSurface(game->renderer, surf);
 	SDL_SetRenderTarget(game->renderer, inter);
@@ -25,26 +25,27 @@ void init_player(Master *game)
 	SDL_QueryTexture(tex, NULL, NULL,  &w, &h);
 	rect.h = (h / 10) * 4;
 	rect.w = w;
+	rect.x = 5;
+	rect.y = 0;
 	SDL_RenderCopy(game->renderer, tex, &rect, NULL);
 
 	game->entities.player.texture = inter;
 
 	SDL_QueryTexture(inter, NULL, NULL,  &w, &h);
-	while (i < 4)
+/* 	while (i < 4)
 	{
 		n = 0;
-		while (n < 3)
+		while (n < 2)
 		{
 			game->entities.player.tiles[i][n].x = n * (w / 14);
 			game->entities.player.tiles[i][n].y = i * (h / 4);
 			n++;
 		}
 		i++;
-	}
-	game->entities.player.idle.x = (w / 14);
-	game->entities.player.idle.y = 0;
-	game->entities.player.hitbox.w = WIN_SIZE / 29;
-	game->entities.player.hitbox.h = WIN_SIZE / 30;
+	} */
+	game->entities.player.hitbox.w = w / 14;
+	game->entities.player.hitbox.h = h / 4;
+	SDL_SetRenderTarget(game->renderer, NULL);
 	/*add death later maybe*/
 }
 

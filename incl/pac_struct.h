@@ -29,6 +29,7 @@ typedef struct s_pawn
 	Coordinates coordinates;
 	Entities *friends_and_foes;
 	int tex_index;
+	int dir;
 }				Pawn;
 
 typedef struct s_ghost
@@ -56,7 +57,7 @@ struct s_entities
 {
 	Ghost  ghost[4];
 	Player player;
-	char map[30][29];
+	char map[31][30];
 };
 
 struct  s_game_state
