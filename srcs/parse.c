@@ -14,15 +14,15 @@ void parse_map(Master *game)
 	memcpy((game->entities.map)[ 7], "X.XXXX.XX.XXXXXXXX.XX.XXXX.X", 29);
 	memcpy((game->entities.map)[ 8], "X......XX....XX....XX......X", 29);
 	memcpy((game->entities.map)[ 9], "XXXXXX.XXXXX.XX.XXXXX.XXXXXX", 29);
-	memcpy((game->entities.map)[10], "XXXXXX.XXXXX.XX.XXXXX.XXXXXX", 29);
-	memcpy((game->entities.map)[11], "XXXXXX.XX          XX.XXXXXX", 29);
-	memcpy((game->entities.map)[12], "XXXXXX.XX XXXXXXXX XX.XXXXXX", 29);
+	memcpy((game->entities.map)[10], "XXXXXX.XXXXX.XX.XXXXX.X    X", 29);
+	memcpy((game->entities.map)[11], "XXXXXX.XX          XX.X    X", 29);
+	memcpy((game->entities.map)[12], "XXXXXX.XX XXXXXXXX XX.X    X", 29);
 	memcpy((game->entities.map)[13], "XXXXXX.XX X      X XX.XXXXXX", 29);
 	memcpy((game->entities.map)[14], "      .   X      X   .      ", 29);
 	memcpy((game->entities.map)[15], "XXXXXX.XX X      X XX.XXXXXX", 29);
-	memcpy((game->entities.map)[16], "XXXXXX.XX XXXXXXXX XX.XXXXXX", 29);
-	memcpy((game->entities.map)[17], "XXXXXX.XX          XX.XXXXXX", 29);
-	memcpy((game->entities.map)[18], "XXXXXX.XX.XXXXXXXX.XX.XXXXXX", 29);
+	memcpy((game->entities.map)[16], "X    X.XX XXXXXXXX XX.X    X", 29);
+	memcpy((game->entities.map)[17], "X    X.XX          XX.X    X", 29);
+	memcpy((game->entities.map)[18], "X    X.XX.XXXXXXXX.XX.X    X", 29);
 	memcpy((game->entities.map)[19], "XXXXXX.XX.XXXXXXXX.XX.XXXXXX", 29);
 	memcpy((game->entities.map)[20], "X............XX............X", 29);
 	memcpy((game->entities.map)[21], "X.XXXX.XXXXX.XX.XXXXX.XXXX.X", 29);
@@ -37,7 +37,8 @@ void parse_map(Master *game)
 	memcpy((game->entities.map)[30], "XXXXXXXXXXXXXXXXXXXXXXXXXXXX", 29);
 	game->entities.player.parent.coordinates.position.x = 14;
 	game->entities.player.parent.coordinates.position.y = 23;
-	
-	surf = IMG_Load("imgs/Map.png");
-	game->background = SDL_CreateTextureFromSurface(game->renderer, surf);
+
+	//surf = IMG_Load("imgs/Map.png");
+	//game->background = SDL_CreateTextureFromSurface(game->renderer, surf);
+	draw_map_bg(game);
 }

@@ -38,9 +38,11 @@ void handle_collisions(Master *game, Vector2 input, int *dir)
 
 	if (game->entities.map[game->entities.player.parent.coordinates.position.y + input.y]
 	[game->entities.player.parent.coordinates.position.x + input.x] != 'X')
+	{
 		vec = input;
+	}
 	else
-		*dir = -1;
+		*dir = game->entities.player.parent.dir;
 	if (game->entities.map[game->entities.player.parent.coordinates.position.y + vec.y]
 		[game->entities.player.parent.coordinates.position.x + vec.x] != 'X')
 	{
@@ -62,8 +64,7 @@ void update_player(Master *game, int *input)
 	SDL_Rect pos;
 	int index;
 
-	in = parse_input(input);
-
+	in = parse_input(*input);
 
 	handle_collisions(game, in, input);
 	pos.h = WIN_SIZE / 25;
@@ -71,7 +72,7 @@ void update_player(Master *game, int *input)
 	pos.x = game->entities.player.parent.coordinates.position.x * WIN_SIZE / 29;
 	pos.y = game->entities.player.parent.coordinates.position.y * WIN_SIZE / 30;
 
-if (input >= 0)
+if (*input >= 0)
 {
 	if ((index = game->entities.player.parent.tex_index) < 2)
 	{
@@ -86,4 +87,5 @@ if (input >= 0)
 }
 	game->entities.player.hitbox.x = index * game->entities.player.hitbox.w;
 	SDL_RenderCopy(game->renderer, game->entities.player.texture, &game->entities.player.hitbox, &pos);
+	game->entities.player.parent.dir = *input;
 }

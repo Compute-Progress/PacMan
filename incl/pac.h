@@ -22,13 +22,11 @@ void	init_lvl(Master *game);
 void init_player(Master *game);
 void	init_menu(Master *game, SDL_Texture *arrow, Vector2* pos);
 
-/******* File : render.c *********/
-
-void	draw_background(char *bg);
-void	draw_image(char *img, Vector2 positon);
-
 /******* File : updates.x *******/
-void	update_player(Master *game, int input);
+void	update_player(Master *game, int *input);
+
+/******* File: render.c *******/
+void draw_map_bg(Master *game);
 
 void parse_map(Master *game);
 

@@ -25,24 +25,13 @@ void init_player(Master *game)
 	SDL_QueryTexture(tex, NULL, NULL,  &w, &h);
 	rect.h = (h / 10) * 4;
 	rect.w = w;
-	rect.x = 5;
+	rect.x = 4;
 	rect.y = 0;
 	SDL_RenderCopy(game->renderer, tex, &rect, NULL);
 
 	game->entities.player.texture = inter;
 
 	SDL_QueryTexture(inter, NULL, NULL,  &w, &h);
-/* 	while (i < 4)
-	{
-		n = 0;
-		while (n < 2)
-		{
-			game->entities.player.tiles[i][n].x = n * (w / 14);
-			game->entities.player.tiles[i][n].y = i * (h / 4);
-			n++;
-		}
-		i++;
-	} */
 	game->entities.player.hitbox.w = w / 14;
 	game->entities.player.hitbox.h = h / 4;
 	SDL_SetRenderTarget(game->renderer, NULL);
@@ -57,9 +46,6 @@ void init_game(Master *game)
 	game->loops[0] = menu_loop;
 	game->loops[1] = lvl_loop;
 	game->loop = game->loops[0];
-
-	//init_tex(game);
-
 	game->entities.player.parent.friends_and_foes = &game->entities;
 }
 
