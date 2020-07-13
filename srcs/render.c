@@ -10,41 +10,67 @@ void draw_map_bg(Master *game)
 	int n, i = 0, start;
 	while (i < 30)
 	{
-		printf("Calculating line %d\n",  i);
 		n = 0;
-		while(n < 30)
+		while(n < 29)
 		{
 			start = n;
-			while (game->entities.map[i][n] == 'X')
+			while (game->entities.map[i][n] == '2' || game->entities.map[i][n] == '1')
 				n++;
-			printf("Start : %d,%d End: %d,%d\n", start * (WIN_SIZE / 28), i * (WIN_SIZE /30), (n) * (WIN_SIZE / 29),  i * (WIN_SIZE /30));
-			if (n - start > 2)
-				SDL_RenderDrawLine(game->renderer, start * (WIN_SIZE / 28), i * (WIN_SIZE / 29), (n + 1) * (WIN_SIZE / 28),  i * (WIN_SIZE /29));
-			while (game->entities.map[i][n] != 'X' && n < 30)
+			if (n - start > 1)
+				SDL_RenderDrawLine(game->renderer, (start * (CELL_H)) + ((CELL_H) / 2), i * (CELL_W) + (CELL_W) / 2, (n * (CELL_H)) - (CELL_H) / 2,  i * (CELL_W)  + (CELL_W) / 2 );
+			while ((game->entities.map[i][n] != '2' && game->entities.map[i][n] != '1') && n < 29)
 				n++;
 		}
 		i++;
 	}
-
-	i = 0;
 	n = 0;
-	while (n < 30)
+	while (n < 29)
 	{
-		printf("Calculating line %d\n",  i);
 		i = 0;
 		while(i < 30)
 		{
 			start = i;
-			while (game->entities.map[i][n] == 'X')
+			while (game->entities.map[i][n] == '2' || game->entities.map[i][n] == '0')
 				i++;
-			printf("Start : %d,%d End: %d,%d\n", start * (WIN_SIZE / 28), n * (WIN_SIZE /30), (i) * (WIN_SIZE / 29),  n * (WIN_SIZE /30));
-			if (i - start > 2)
-				SDL_RenderDrawLine(game->renderer, n * (WIN_SIZE / 28), start * (WIN_SIZE / 29), (n) * (WIN_SIZE / 28),  i * (WIN_SIZE /29));
-			while (game->entities.map[i][n] != 'X' && i < 30)
+			SDL_RenderDrawLine(game->renderer, (n * (CELL_H)) + (CELL_H) / 2, (start * (CELL_W)) + (CELL_W)/2, (n* (CELL_H)) + (CELL_H) / 2, (i * (CELL_W)) - (CELL_W)/2);
+			while ((game->entities.map[i][n] != '2' && game->entities.map[i][n] != '0') && i < 30)
 				i++;
 		}
 		n++;
 	}
+
 	SDL_SetRenderTarget(game->renderer, NULL);
 	game->background = inter;
+}
+
+void draw_items(Master *game)
+{
+	int i = 0, n, r, inc, incy;
+	Vector2 origin, new;
+
+	r = CELL_H / 5;
+	while (i < 30)
+	{
+		n = 0;
+		while (n < 29)
+		{
+			origin.x = n * (CELL_H) + ((CELL_H) / 2);
+			origin.y = i * (CELL_W) + ((CELL_W) / 2);
+			if (game->entities.map[i][n] == '.')
+			{
+				inc = origin.x - r;
+				new.x = inc;
+				new.y = origin.y - r;
+				incy = new.y;
+				while (new.x <= (origin.x))
+				{
+					SDL_RenderDrawLine(game->renderer, origin.x, origin.y, new.x, new.y);
+					new.x += inc / 3;
+					new.y -= incy / 3;
+				}
+			}
+			n++;
+		}
+		i++;
+	}
 }

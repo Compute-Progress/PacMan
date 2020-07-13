@@ -40,13 +40,13 @@ void init_player(Master *game)
 
 void init_game(Master *game)
 {
-
 	int i = 0;
 
 	game->loops[0] = menu_loop;
 	game->loops[1] = lvl_loop;
 	game->loop = game->loops[0];
 	game->entities.player.parent.friends_and_foes = &game->entities;
+	game->pellets = 258;
 }
 
 void init_lvl(Master *game)

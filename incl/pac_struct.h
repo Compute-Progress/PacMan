@@ -69,6 +69,7 @@ struct  s_game_state
 	Entities entities;
 	state_update loops[4];
 	state_update loop;
+	int pellets, score, lives;
 };
 
 #endif

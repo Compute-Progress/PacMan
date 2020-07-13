@@ -1,51 +1,25 @@
 #include "pac.h"
 
-Vector2 parse_input(int input)
-{
-	Vector2 in;
-
-	if (input == 0)
-	{
-		in.x = 1;
-		in.y = 0;
-	}
-	else if (input == 1)
-	{
-		in.x = -1;
-		in.y = 0;
-	}
-	else if (input == 3)
-	{
-		in.x = 0;
-		in.y = 1;
-	}
-	else if (input == 2)
-	{
-		in.x = 0;
-		in.y = -1;
-	}
-	else if (input == -1)
-	{
-		in.x = 0;
-		in.y = 0;
-	}
-	return in;
-}
-
 void handle_collisions(Master *game, Vector2 input, int *dir)
 {
 	Vector2 vec = game->entities.player.parent.coordinates.direction;
+	char c;
 
 	if (game->entities.map[game->entities.player.parent.coordinates.position.y + input.y]
-	[game->entities.player.parent.coordinates.position.x + input.x] != 'X')
-	{
+	[game->entities.player.parent.coordinates.position.x + input.x] < '0')
 		vec = input;
-	}
 	else
 		*dir = game->entities.player.parent.dir;
-	if (game->entities.map[game->entities.player.parent.coordinates.position.y + vec.y]
-		[game->entities.player.parent.coordinates.position.x + vec.x] != 'X')
+	if ((c = game->entities.map[game->entities.player.parent.coordinates.position.y + vec.y]
+		[game->entities.player.parent.coordinates.position.x + vec.x]) < '0')
 	{
+		if (c == '.')
+		{
+			game->entities.map[game->entities.player.parent.coordinates.position.y + vec.y]
+			[game->entities.player.parent.coordinates.position.x + vec.x] = ' ';
+			game->pellets--;
+			game->score += 100;
+		}
 		if ((game->entities.player.parent.coordinates.position.x += vec.x) < 0)
 			game->entities.player.parent.coordinates.position.x = 29;
 		else if (game->entities.player.parent.coordinates.position.x > 28)
@@ -88,4 +62,5 @@ if (*input >= 0)
 	game->entities.player.hitbox.x = index * game->entities.player.hitbox.w;
 	SDL_RenderCopy(game->renderer, game->entities.player.texture, &game->entities.player.hitbox, &pos);
 	game->entities.player.parent.dir = *input;
+	draw_items(game);
 }
