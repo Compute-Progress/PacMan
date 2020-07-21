@@ -3,22 +3,14 @@ PacMan Todo list
 
 -------------------------
 
-- [ ] Learn to use SDL
-* Figure out classes
-    - [ ] classes
-    - [ ]inheritance
-    - [ ] constructors?
-    - [ ] destructor (actually useful so we don't need to a separate script to free)
-    - [ ] polymorphism
-- [x] Macro Magic (Tokenization)
--------------------------
+- [x] Learn to use SDL
 
-- [ ] Create and parse map
-- [ ] Display Map
-- [ ] Entities class
-* Pawn Class
-    - [ ] Movement method
-    - [ ] Wall collision
+
+- [x] Create and parse map
+- [x] Display Map
+- [x] Entities class
+
+    - [x] Wall collision
 * Player class
     - [ ] Enemy collision
 * Ghost class
@@ -29,11 +21,11 @@ PacMan Todo list
         - [ ] Pinky
         - [ ]  The blue One
         - [ ] Kyle ?
-- [ ] Update method
-- [ ] Pellet and score increase
-- [ ] Main Menu
-- [ ] Level Change
-- [ ] Textures
+- [x] Update method
+- [x] Pellet and score increase
+- [x] Main Menu
+- [x] Level Change
+- [x] Textures
 
 --------NOT SURE ABOUT THESE YET------------
 - [ ] Scoreboard
