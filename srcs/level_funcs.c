@@ -78,6 +78,7 @@ int lvl_loop(Master *game)
 		SDL_RenderClear(game->renderer);
 		SDL_RenderCopy(game->renderer, game->background, NULL, NULL);
 		update_player(game, &input);
+		update_ghosts(game);
 		SDL_RenderPresent(game->renderer);
 		SDL_Delay(20);
 	}

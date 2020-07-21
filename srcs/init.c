@@ -1,13 +1,38 @@
 #include "pac.h"
-/*
-Ghost *init_ghost(Master *game)
+
+void init_ghost(Master *game)
 {
-	int i = 0;
 
-	game->entities->ghost[0]->parent.coorddinates.position.x = 0;
+	int w, h, i = 0, n;
+	SDL_Surface *surf;
+	SDL_Texture *tex;
+	SDL_Texture *inter;
+	SDL_Rect rect;
 
+	surf = IMG_Load("imgs/SpriteSheet.png");
+	inter = SDL_CreateTexture(game->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, WIN_SIZE, WIN_SIZE);
+	tex = SDL_CreateTextureFromSurface(game->renderer, surf);
+	SDL_SetRenderTarget(game->renderer, inter);
+
+	SDL_QueryTexture(tex, NULL, NULL,  &w, &h);
+
+
+	rect.y = (h / 10) * 5;
+	rect.x  = 4;
+	rect.h = (h / 10) * 4;
+	rect.w = w;
+
+	SDL_RenderCopy(game->renderer, tex, &rect, NULL);
+	SDL_SetRenderTarget(game->renderer, NULL);
+	game->entities.ghost_tex = inter;
+
+	game->entities.ghost[0].parent.coordinates.position.x = 26;
+	game->entities.ghost[0].parent.coordinates.position.y = 1;
+	game->entities.ghost[0].target.y = -1;
+	game->entities.ghost[0].target.x = 28;
+	game->entities.ghost[0].parent.coordinates.direction.x = 1;
+	game->entities.ghost[0].parent.coordinates.direction.y = 0;
 }
- */
 
 void init_player(Master *game)
 {
@@ -52,6 +77,7 @@ void init_game(Master *game)
 void init_lvl(Master *game)
 {
 	init_player(game);
+	init_ghost(game);
 	parse_map(game);
 }
 

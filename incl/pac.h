@@ -24,6 +24,7 @@ void	init_menu(Master *game, SDL_Texture *arrow, Vector2* pos);
 
 /******* File : updates.x *******/
 void	update_player(Master *game, int *input);
+void update_ghosts(Master *game);
 
 /******* File: render.c *******/
 void	draw_map_bg(Master *game);

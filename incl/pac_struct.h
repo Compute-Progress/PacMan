@@ -28,8 +28,7 @@ typedef struct s_pawn
 {
 	Coordinates coordinates;
 	Entities *friends_and_foes;
-	int tex_index;
-	int dir;
+	int dir, tex_index;
 }				Pawn;
 
 typedef struct s_ghost
@@ -37,8 +36,7 @@ typedef struct s_ghost
 	Pawn parent;
 
 	Vector2 target;
-	Vector2 tiles[4][2];
-
+	int state;
 	SDL_Texture *texture;
 }				Ghost;
 
@@ -48,16 +46,15 @@ typedef struct s_player
 
 	SDL_Texture *texture;
 	SDL_Rect hitbox;
-
-	Vector2 idle;
-	Vector2 tiles[4][2];
 }				Player;
 
 struct s_entities
 {
 	Ghost  ghost[4];
 	Player player;
+
 	char map[31][30];
+	SDL_Texture *ghost_tex;
 };
 
 struct  s_game_state
