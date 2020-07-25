@@ -73,12 +73,12 @@ int try_dir(Master *game, Vector2 newdir, Coordinates coord, Vector2 target)
 	{
 		int x = coord.position.x + newdir.x;
 		int y = coord.position.y + newdir.y;
-		if (game->entities.map[y][x] < '0')
+		if (game->entities.map[y][x] < '0' && x > 0 && y  > 0)
 		{
-			c = (int)(pow(target.x - x, 2) + pow(target.y + y, 2));
-			printf("pos %d %d\n", target.x, target.y);
+			c = (int)(pow(target.x - x, 2) + pow(target.y - y, 2));
 			return c;
 		}
+
 	}
 	return -1;
 }
@@ -90,19 +90,19 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 	Coordinates co = ghost->parent.coordinates;
 	Vector2 new_dir, direction;
 
+	direction = co.direction;
 	new_dir.y = 0;
 	new_dir.x = -1;
 	c = try_dir(game, new_dir, co, target);
-	if (c <= result && c > 0)
+	if (c < result && c > 0)
 	{
-		//printf("Dir x x %d Diry %d, C %d, REsult %d\n", new_dir.x , new_dir.y);
 		result = c;
 		direction = new_dir;
 	}
 	new_dir.y = 0;
 	new_dir.x = 1;
 	c = try_dir(game, new_dir, co, target);
-	if (c <= result && c > 0)
+	if (c < result && c > 0)
 	{
 		result = c;
 		direction = new_dir;
@@ -110,14 +110,15 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 	new_dir.y = 1;
 	new_dir.x = 0;
 	c = try_dir(game, new_dir, co, target);
-	if (c <= result && c > 0)
+	if (c < result && c > 0)
 	{
 		result = c;
 		direction = new_dir;
 	}
 	new_dir.y = -1;
 	new_dir.x = 0;
-	c = try_dir(game, new_dir, co, target);if (c <= result && c > 0)
+	c = try_dir(game, new_dir, co, target);
+	if (c <= result && c > 0)
 	{
 		result = c;
 		direction = new_dir;
@@ -128,9 +129,40 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 	co.position.y += direction.y;
 	ghost->parent.coordinates = co;
 	SDL_RenderDrawLine(game->renderer, co.position.x * CELL_W, co.position.y * CELL_H, target.x * CELL_W, target.y * CELL_H);
+	if (direction.x == 0)
+	{
+		(direction.y == 1) ? (ghost->parent.dir = 3) : (ghost->parent.dir = 2);
+	}
+	else
+		(direction.x == 1) ? (ghost->parent.dir = 0) : (ghost->parent.dir = 1);
+}
+
+void  render_ghost(Master*game, Ghost *ghost, int number)
+{
+	SDL_Rect pos;
+	int max;
+
+	pos.h = WIN_SIZE / 25;
+	pos.w = WIN_SIZE / 24;
+	pos.x = ghost->parent.coordinates.position.x * WIN_SIZE / 29;
+	pos.y = ghost->parent.coordinates.position.y * WIN_SIZE / 30;
+
+	(ghost->state == 2) ? (ghost->source.y = number) : (ghost->source.y = ghost->state);
+	if (ghost->state != 0)
+	{
+		ghost->source.x = ghost->parent.dir * 2;
+	}
+	if (ghost->state != 1)
+	{
+		ghost->source.x += ghost->parent.tex_index;
+		ghost->source.x *= ghost->source.w;
+		(ghost->parent.tex_index == 1) ? (ghost->parent.tex_index = 0) : (ghost->parent.tex_index = 1);
+	}
+	SDL_RenderCopy(game->renderer, game->entities.ghost_tex, &ghost->source, &pos);
 }
 
 void update_ghosts(Master *game)
 {
-	move_ghost(game, &game->entities.ghost[0], game->entities.player.parent.coordinates.position);
+	move_ghost(game, &game->entities.ghost[0], clyde(game));
+	render_ghost(game, &game->entities.ghost[0], 0);
 }

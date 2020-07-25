@@ -17,7 +17,7 @@ void init_ghost(Master *game)
 	SDL_QueryTexture(tex, NULL, NULL,  &w, &h);
 
 
-	rect.y = (h / 10) * 5;
+	rect.y = (h / 10) * 4;
 	rect.x  = 4;
 	rect.h = (h / 10) * 4;
 	rect.w = w;
@@ -25,13 +25,17 @@ void init_ghost(Master *game)
 	SDL_RenderCopy(game->renderer, tex, &rect, NULL);
 	SDL_SetRenderTarget(game->renderer, NULL);
 	game->entities.ghost_tex = inter;
-
+	SDL_QueryTexture(inter, NULL, NULL,  &w, &h);
 	game->entities.ghost[0].parent.coordinates.position.x = 26;
 	game->entities.ghost[0].parent.coordinates.position.y = 1;
 	game->entities.ghost[0].target.y = -1;
 	game->entities.ghost[0].target.x = 28;
 	game->entities.ghost[0].parent.coordinates.direction.x = 1;
 	game->entities.ghost[0].parent.coordinates.direction.y = 0;
+	game->entities.ghost[0].source.w = w / 14;
+	game->entities.ghost[0].source.h = h / 4;
+	game->entities.ghost[0].state = 2;
+	game->entities.ghost[0].parent.tex_index = 0;
 }
 
 void init_player(Master *game)
@@ -70,7 +74,6 @@ void init_game(Master *game)
 	game->loops[0] = menu_loop;
 	game->loops[1] = lvl_loop;
 	game->loop = game->loops[0];
-	game->entities.player.parent.friends_and_foes = &game->entities;
 	game->pellets = 258;
 }
 

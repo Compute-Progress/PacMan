@@ -46,28 +46,22 @@ void draw_map_bg(Master *game)
 void draw_items(Master *game)
 {
 	int i = 0, n, r, inc, incy;
-	Vector2 origin, new;
-
+	SDL_Rect rect, pos;
+	rect = game->entities.player.hitbox;
+	pos = game->entities.player.hitbox;;
+	rect.x =  2 * rect.w;
+	rect.y = 0;
 	r = CELL_H / 5;
 	while (i < 30)
 	{
 		n = 0;
 		while (n < 29)
 		{
-			origin.x = n * (CELL_H) + ((CELL_H) / 2);
-			origin.y = i * (CELL_W) + ((CELL_W) / 2);
 			if (game->entities.map[i][n] == '.')
 			{
-				inc = origin.x - r;
-				new.x = inc;
-				new.y = origin.y - r;
-				incy = new.y;
-				while (new.x <= (origin.x))
-				{
-					SDL_RenderDrawLine(game->renderer, origin.x, origin.y, new.x, new.y);
-					new.x += inc / 3;
-					new.y -= incy / 3;
-				}
+				pos.x = n  * CELL_W;
+				pos.y = i * CELL_H;
+				SDL_RenderCopy(game->renderer, game->entities.player.texture, &rect, &pos);
 			}
 			n++;
 		}

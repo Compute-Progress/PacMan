@@ -22,22 +22,23 @@ typedef struct s_coordinates
 	Vector2 direction;
 }				Coordinates;
 
-typedef void(*ghost_update)(Entities entities, Coordinates coord, Vector2 target);
+typedef Vector2(*calc_target)(Master *game);
 
 typedef struct s_pawn
 {
 	Coordinates coordinates;
-	Entities *friends_and_foes;
+
 	int dir, tex_index;
 }				Pawn;
 
 typedef struct s_ghost
 {
 	Pawn parent;
+	calc_target target_func;
+	int state;
 
 	Vector2 target;
-	int state;
-	SDL_Texture *texture;
+	SDL_Rect source;
 }				Ghost;
 
 typedef struct s_player
