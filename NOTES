@@ -57,3 +57,6 @@ Is it better to load all textures once the game starts or everytime the level st
 I'm afraid I don't know the answer... yet.
 ----------------------------------
 Longer game ticks vs using floats for coordinates? One will have input lag...
+
+-----------------------------------
+Haven't written here ina  while... The whiteboards are better for this. 

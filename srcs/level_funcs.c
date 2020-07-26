@@ -75,11 +75,14 @@ int lvl_loop(Master *game)
 					input = 1;
 			}
         }
-		SDL_RenderClear(game->renderer);
-		SDL_RenderCopy(game->renderer, game->background, NULL, NULL);
-		update_ghosts(game);
-		update_player(game, &input);
-		SDL_RenderPresent(game->renderer);
+		if (game->lives > 0 && game->pellets > 0)
+		{
+			SDL_RenderClear(game->renderer);
+			SDL_RenderCopy(game->renderer, game->background, NULL, NULL);
+			update_player(game, &input);
+			update_ghosts(game);
+			SDL_RenderPresent(game->renderer);
+		}
 		SDL_Delay(200);
 	}
 }

@@ -16,7 +16,7 @@ void parse_map(Master *game)
 	memcpy((game->entities.map)[ 9], "211112.02112.00.21120.211112", 29);
 	memcpy((game->entities.map)[10], "0    0.02112.22.21120.2    0", 29);
 	memcpy((game->entities.map)[11], "0    0.00          00.2    0", 29);
-	memcpy((game->entities.map)[12], "0    0.00 211  112 00.2    0", 29);
+	memcpy((game->entities.map)[12], "0    0.00 2111!112 00.2    0", 29);
 	memcpy((game->entities.map)[13], "211112.22 0      0 22.211112", 29);
 	memcpy((game->entities.map)[14], "      .   0      0   .      ", 29);
 	memcpy((game->entities.map)[15], "211112.22 0      0 22.211112", 29);

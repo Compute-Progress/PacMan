@@ -18,7 +18,7 @@ void init_ghost(Master *game)
 
 
 	rect.y = (h / 10) * 4;
-	rect.x  = 4;
+	rect.x  = 5;
 	rect.h = (h / 10) * 4;
 	rect.w = w;
 
@@ -112,6 +112,7 @@ void init_game(Master *game)
 	game->loops[1] = lvl_loop;
 	game->loop = game->loops[0];
 	game->pellets = 258;
+	game->lives = 3;
 }
 
 void init_lvl(Master *game)

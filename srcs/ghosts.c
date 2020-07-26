@@ -50,15 +50,9 @@ Vector2 clyde(Master *game)
 Vector2 frightened(Ghost *ghost)
 {
 	Vector2 dir;
-	int mult;
 
-	mult = rand() % 1;
-	dir.x = rand() % 1;
-	(dir.x == 1) ? (dir.y = 0) : (dir.y = 1);
-	if (rand() % 1 == 1)
-	{
-		(dir.x == 1) ? (dir.x *= -1) : (dir.y *= -1);
-	}
+	dir.x = rand() % 28;
+	dir.y = rand() % 29;
 	ghost->timer++;
 	if (ghost->timer > 50)
 		ghost->state = 2;
@@ -68,15 +62,24 @@ Vector2 frightened(Ghost *ghost)
 Vector2 dead(Ghost *ghost)
 {
 	Vector2 dir;
-
-	dir.y = 13;
+	static int reached;
+	dir.x = 14;
 	if (ghost->parent.coordinates.position.x == 14 &&
 	ghost->parent.coordinates.position.y == 13)
 	{
-		dir.x = 11;
-		ghost->state = 2;
+		reached = 1;
 	}
-	else
-		dir.x = 12;
+	if (reached == 0)
+		dir.y = 13;
+	if (reached == 	1)
+	{
+		if (ghost->parent.coordinates.position.x == 14 &&
+		ghost->parent.coordinates.position.y == 11)
+		{
+			ghost->state = 2;
+			dir.y = 10;
+		}
+		else dir.y = 11;
+	}
 	return dir;
 }
