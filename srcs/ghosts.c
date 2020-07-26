@@ -19,16 +19,17 @@ Vector2 pinky(Master *game)
 Vector2 inky(Master *game)
 {
 	Vector2 target;
+	int x, y;
 
 	target.x = game->entities.player.parent.coordinates.position.x;
 	target.y = game->entities.player.parent.coordinates.position.y;
 	target.x += game->entities.player.parent.coordinates.direction.x * 2;
 	target.y += game->entities.player.parent.coordinates.direction.y * 2;
 
-	target.x = game->entities.ghost[0].parent.coordinates.position.x - target.x;
-	target.y = game->entities.ghost[0].parent.coordinates.position.y - target.y;
-	target.x *= -1;
-	target.y *= -1;
+	x = game->entities.ghost[0].parent.coordinates.position.x - target.x;
+	y = game->entities.ghost[0].parent.coordinates.position.y - target.y;
+	target.x -= x;
+	target.y -= y;
 	return target;
 }
 
@@ -37,11 +38,45 @@ Vector2 clyde(Master *game)
 	Vector2 target;
 	double distance;
 
-	distance = pow(game->entities.ghost[0].parent.coordinates.position.x - game->entities.player.parent.coordinates.position.x, 2) +
-	pow(game->entities.ghost[0].parent.coordinates.position.y - game->entities.player.parent.coordinates.position.y, 2);
+	distance = pow(game->entities.ghost[3].parent.coordinates.position.x - game->entities.player.parent.coordinates.position.x, 2) +
+	pow(game->entities.ghost[3].parent.coordinates.position.y - game->entities.player.parent.coordinates.position.y, 2);
 
 	if (sqrt(distance) > 8)
 		return game->entities.player.parent.coordinates.position;
 	else
-		return game->entities.ghost[0].target;
+		return game->entities.ghost[3].target;
+}
+
+Vector2 frightened(Ghost *ghost)
+{
+	Vector2 dir;
+	int mult;
+
+	mult = rand() % 1;
+	dir.x = rand() % 1;
+	(dir.x == 1) ? (dir.y = 0) : (dir.y = 1);
+	if (rand() % 1 == 1)
+	{
+		(dir.x == 1) ? (dir.x *= -1) : (dir.y *= -1);
+	}
+	ghost->timer++;
+	if (ghost->timer > 50)
+		ghost->state = 2;
+	return dir;
+}
+
+Vector2 dead(Ghost *ghost)
+{
+	Vector2 dir;
+
+	dir.y = 13;
+	if (ghost->parent.coordinates.position.x == 14 &&
+	ghost->parent.coordinates.position.y == 13)
+	{
+		dir.x = 11;
+		ghost->state = 2;
+	}
+	else
+		dir.x = 12;
+	return dir;
 }

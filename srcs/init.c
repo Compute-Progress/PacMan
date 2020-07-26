@@ -29,13 +29,50 @@ void init_ghost(Master *game)
 	game->entities.ghost[0].parent.coordinates.position.x = 26;
 	game->entities.ghost[0].parent.coordinates.position.y = 1;
 	game->entities.ghost[0].target.y = -1;
-	game->entities.ghost[0].target.x = 28;
+	game->entities.ghost[0].target.x = 26;
 	game->entities.ghost[0].parent.coordinates.direction.x = 1;
 	game->entities.ghost[0].parent.coordinates.direction.y = 0;
 	game->entities.ghost[0].source.w = w / 14;
 	game->entities.ghost[0].source.h = h / 4;
 	game->entities.ghost[0].state = 2;
 	game->entities.ghost[0].parent.tex_index = 0;
+	game->entities.ghost[0].target_func = &blinky;
+
+	game->entities.ghost[1].parent.coordinates.position.x = 1;
+	game->entities.ghost[1].parent.coordinates.position.y = 1;
+	game->entities.ghost[1].target.y = -1;
+	game->entities.ghost[1].target.x = 1;
+	game->entities.ghost[1].parent.coordinates.direction.x = 1;
+	game->entities.ghost[1].parent.coordinates.direction.y = 0;
+	game->entities.ghost[1].source.w = w / 14;
+	game->entities.ghost[1].source.h = h / 4;
+	game->entities.ghost[1].state = 2;
+	game->entities.ghost[1].parent.tex_index = 0;
+	game->entities.ghost[1].target_func = &pinky;
+
+	game->entities.ghost[2].parent.coordinates.position.x = 26;
+	game->entities.ghost[2].parent.coordinates.position.y = 29;
+	game->entities.ghost[2].target.y = 31;
+	game->entities.ghost[2].target.x = 26;
+	game->entities.ghost[2].parent.coordinates.direction.x = 1;
+	game->entities.ghost[2].parent.coordinates.direction.y = 0;
+	game->entities.ghost[2].source.w = w / 14;
+	game->entities.ghost[2].source.h = h / 4;
+	game->entities.ghost[2].state = 2;
+	game->entities.ghost[2].parent.tex_index = 0;
+	game->entities.ghost[2].target_func = &inky;
+
+	game->entities.ghost[3].parent.coordinates.position.x = 1;
+	game->entities.ghost[3].parent.coordinates.position.y = 29;
+	game->entities.ghost[3].target.y = 31;
+	game->entities.ghost[3].target.x = 1;
+	game->entities.ghost[3].parent.coordinates.direction.x = 1;
+	game->entities.ghost[3].parent.coordinates.direction.y = 0;
+	game->entities.ghost[3].source.w = w / 14;
+	game->entities.ghost[3].source.h = h / 4;
+	game->entities.ghost[3].state = 2;
+	game->entities.ghost[3].parent.tex_index = 0;
+	game->entities.ghost[3].target_func = &clyde;
 }
 
 void init_player(Master *game)

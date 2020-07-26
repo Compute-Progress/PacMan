@@ -35,7 +35,7 @@ typedef struct s_ghost
 {
 	Pawn parent;
 	calc_target target_func;
-	int state;
+	int state, timer;
 
 	Vector2 target;
 	SDL_Rect source;

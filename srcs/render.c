@@ -48,10 +48,8 @@ void draw_items(Master *game)
 	int i = 0, n, r, inc, incy;
 	SDL_Rect rect, pos;
 	rect = game->entities.player.hitbox;
-	pos = game->entities.player.hitbox;;
-	rect.x =  2 * rect.w;
-	rect.y = 0;
-	r = CELL_H / 5;
+
+
 	while (i < 30)
 	{
 		n = 0;
@@ -59,8 +57,22 @@ void draw_items(Master *game)
 		{
 			if (game->entities.map[i][n] == '.')
 			{
+				pos.w = CELL_W / 2;
+				pos.h = CELL_H / 2;
 				pos.x = n  * CELL_W;
-				pos.y = i * CELL_H;
+				(i > 14) ? (pos.y = i * CELL_H - CELL_H) : (pos.y = i * CELL_H);
+				rect.x =  2 * rect.w;
+				rect.y = 0;
+				SDL_RenderCopy(game->renderer, game->entities.player.texture, &rect, &pos);
+			}
+			else if (game->entities.map[i][n] == '#')
+			{
+				pos.w = CELL_W;
+				pos.h = CELL_H;
+				pos.x = n  * CELL_W;
+				(i > 14) ? (pos.y = i * CELL_H - CELL_H) : (pos.y = i * CELL_H);
+				rect.x = 3 * rect.w;
+				rect.y = 3 * rect.h;
 				SDL_RenderCopy(game->renderer, game->entities.player.texture, &rect, &pos);
 			}
 			n++;

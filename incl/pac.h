@@ -5,6 +5,7 @@
 # include "SDL_image.h"
 # include "pac_struct.h"
 # include <stdio.h>
+# include <stdlib.h>
 # include <math.h>
 
 #define WIN_SIZE 500
@@ -39,5 +40,6 @@ Vector2 blinky(Master *game);
 Vector2 pinky(Master *game);
 Vector2 inky(Master *game);
 Vector2 clyde(Master *game);
-
+Vector2 dead(Ghost *ghost);
+Vector2 frightened(Ghost *ghost);
 #endif

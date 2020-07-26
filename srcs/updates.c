@@ -20,6 +20,31 @@ void handle_collisions(Master *game, Vector2 input, int *dir)
 			game->pellets--;
 			game->score += 100;
 		}
+		else if (c == '#')
+		{
+			if (game->entities.ghost[0].state != 1)
+			{
+				game->entities.ghost[0].state = 0;
+				game->entities.ghost[0].timer = 0;
+			}
+			if (game->entities.ghost[1].state != 1)
+			{
+				game->entities.ghost[1].state = 0;
+				game->entities.ghost[1].timer = 0;
+			}
+			if (game->entities.ghost[2].state != 1)
+			{
+				game->entities.ghost[2].state = 0;
+				game->entities.ghost[2].timer = 0;
+			}
+			if (game->entities.ghost[3].state != 1)
+			{
+				game->entities.ghost[3].state = 0;
+				game->entities.ghost[3].timer = 0;
+			}
+			game->entities.map[game->entities.player.parent.coordinates.position.y + vec.y]
+			[game->entities.player.parent.coordinates.position.x + vec.x] = ' ';
+		}
 		if ((game->entities.player.parent.coordinates.position.x += vec.x) < 0)
 			game->entities.player.parent.coordinates.position.x = 29;
 		else if (game->entities.player.parent.coordinates.position.x > 28)
@@ -127,6 +152,10 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 	co.direction = direction;
 	co.position.x += direction.x;
 	co.position.y += direction.y;
+	if (co.position.x < 0)
+		co.position.x = 28;
+	if (co.position.x > 28)
+		co.position.x = 0;
 	ghost->parent.coordinates = co;
 	SDL_RenderDrawLine(game->renderer, co.position.x * CELL_W, co.position.y * CELL_H, target.x * CELL_W, target.y * CELL_H);
 	if (direction.x == 0)
@@ -148,6 +177,11 @@ void  render_ghost(Master*game, Ghost *ghost, int number)
 	pos.y = ghost->parent.coordinates.position.y * WIN_SIZE / 30;
 
 	(ghost->state == 2) ? (ghost->source.y = number) : (ghost->source.y = ghost->state);
+	ghost->source.y *= ghost->source.h;
+	if (ghost->state== 1)
+	{
+
+	}
 	if (ghost->state != 0)
 	{
 		ghost->source.x = ghost->parent.dir * 2;
@@ -155,14 +189,29 @@ void  render_ghost(Master*game, Ghost *ghost, int number)
 	if (ghost->state != 1)
 	{
 		ghost->source.x += ghost->parent.tex_index;
-		ghost->source.x *= ghost->source.w;
 		(ghost->parent.tex_index == 1) ? (ghost->parent.tex_index = 0) : (ghost->parent.tex_index = 1);
 	}
+		ghost->source.x *= ghost->source.w;
 	SDL_RenderCopy(game->renderer, game->entities.ghost_tex, &ghost->source, &pos);
 }
 
 void update_ghosts(Master *game)
 {
-	move_ghost(game, &game->entities.ghost[0], clyde(game));
-	render_ghost(game, &game->entities.ghost[0], 0);
+	int i = 0;
+	Vector2 target;
+
+	while (i < 4)
+	{
+		if (game->entities.ghost[i].state == 2)
+		{
+			target = game->entities.ghost[i].target_func(game);
+		}
+		else if (game->entities.ghost[i].state == 1)
+			target = dead(&game->entities.ghost[i]);
+		else
+			target = frightened(&game->entities.ghost[i]);
+		move_ghost(game, &game->entities.ghost[i], target);
+		render_ghost(game, &game->entities.ghost[i], i);
+		i++;
+	}
 }
