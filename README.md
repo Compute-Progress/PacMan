@@ -14,4 +14,3 @@ Unlikely that I add these but I will keep this there in case I ever want to fini
     - [ ] Co-Op
     - [ ] Vs
 - [ ] AI PacMan?
-https://media.discordapp.net/attachments/432508907701665802/737176438964355132/unknown.png
