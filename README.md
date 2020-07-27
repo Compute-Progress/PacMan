@@ -1,35 +1,14 @@
 # PacMan
-PacMan Todo list
 
--------------------------
-
-- [x] Learn to use SDL
-
-
-- [x] Create and parse map
-- [x] Display Map
-- [x] Entities class
-
-    - [x] Wall collision
-* Player class
-    - [ ] Enemy collision
-* Ghost class
-    - [ ] Chase behavior
-    - [ ] Scurry Behavior
-    - [ ] Frightened Behavior
-        - [ ] Blinky
-        - [ ] Pinky
-        - [ ]  The blue One
-        - [ ] Kyle ?
-- [x] Update method
-- [x] Pellet and score increase
-- [x] Main Menu
-- [x] Level Change
-- [x] Textures
+Project is mostly done. It is playable but there are some minor graphics issues (player and ghosts need to be offset
+by a few pixels to match their actual locations)
+Need to refactor some of the code but most of it fairly understandable.
 
 --------NOT SURE ABOUT THESE YET------------
+
+Unlikely that I add these but I will keep this there in case I ever want to finish this
+
 - [ ] Scoreboard
-- [ ] More ghosts
 - [ ] Diff maps
 * 2 player mode
     - [ ] Co-Op
