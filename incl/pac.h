@@ -9,8 +9,8 @@
 # include <math.h>
 
 #define WIN_SIZE 500
-# define CELL_W WIN_SIZE / 29
-# define CELL_H WIN_SIZE / 28
+# define CELL_W WIN_SIZE / 27
+# define CELL_H WIN_SIZE / 30
 
 /***** File : level_funcs.c *****/
 

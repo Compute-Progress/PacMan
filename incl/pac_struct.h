@@ -54,7 +54,7 @@ struct s_entities
 	Ghost  ghost[4];
 	Player player;
 
-	char map[31][30];
+	char map[31][29];
 	SDL_Texture *ghost_tex;
 };
 
@@ -67,7 +67,7 @@ struct  s_game_state
 	Entities entities;
 	state_update loops[4];
 	state_update loop;
-	int pellets, score, lives;
+	int pellets, score, lives, invicibility;
 };
 
 #endif

@@ -51,8 +51,8 @@ Vector2 frightened(Ghost *ghost)
 {
 	Vector2 dir;
 
-	dir.x = rand() % 28;
-	dir.y = rand() % 29;
+	dir.x = rand() % 29;
+	dir.y = rand() % 30;
 	ghost->timer++;
 	if (ghost->timer > 50)
 		ghost->state = 2;

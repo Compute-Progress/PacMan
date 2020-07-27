@@ -18,7 +18,7 @@ void handle_collisions(Master *game, Vector2 input, int *dir)
 			game->entities.map[game->entities.player.parent.coordinates.position.y + vec.y]
 			[game->entities.player.parent.coordinates.position.x + vec.x] = ' ';
 			game->pellets--;
-			game->score += 100;
+			game->score += 10;
 		}
 		else if (c == '#')
 		{
@@ -46,7 +46,7 @@ void handle_collisions(Master *game, Vector2 input, int *dir)
 			[game->entities.player.parent.coordinates.position.x + vec.x] = ' ';
 		}
 		if ((game->entities.player.parent.coordinates.position.x += vec.x) < 0)
-			game->entities.player.parent.coordinates.position.x = 29;
+			game->entities.player.parent.coordinates.position.x = 28;
 		else if (game->entities.player.parent.coordinates.position.x > 28)
 			game->entities.player.parent.coordinates.position.x = 0;
 		if ((game->entities.player.parent.coordinates.position.y += vec.y) < 0)
@@ -68,8 +68,8 @@ void update_player(Master *game, int *input)
 	handle_collisions(game, in, input);
 	pos.h = WIN_SIZE / 25;
 	pos.w = WIN_SIZE / 24;
-	pos.x = game->entities.player.parent.coordinates.position.x * WIN_SIZE / 29;
-	pos.y = game->entities.player.parent.coordinates.position.y * WIN_SIZE / 30;
+	pos.x = game->entities.player.parent.coordinates.position.x * CELL_W;
+	pos.y = game->entities.player.parent.coordinates.position.y * CELL_H - (CELL_H);
 
 	if (*input >= 0)
 	{
@@ -98,7 +98,7 @@ int try_dir(Master *game, Vector2 newdir, Coordinates coord, Vector2 target, int
 	{
 		int x = coord.position.x + newdir.x;
 		int y = coord.position.y + newdir.y;
-		if (newdir.y == 1 && game->entities.map[y][x] == '!' && state == 2)
+		if (newdir.y == 1 && game->entities.map[y][x] == '!' && state != 1)
 			return -1;
 		if (game->entities.map[y][x] < '0' && x > 0 && y  > 0)
 		{
@@ -121,8 +121,12 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 	{
 		if (ghost->state == 0)
 			ghost->state = 1;
-		if (ghost->state == 2)
+		if (ghost->state == 2 && game->invicibility <= 0)
+		{
 			game->lives--;
+			game->invicibility = 10;
+			printf("Lives %d\n", game->lives);
+		}
 	}
 	direction = co.direction;
 	new_dir.y = 0;
@@ -170,8 +174,12 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 	{
 		if (ghost->state == 0)
 			ghost->state = 1;
-		if (ghost->state == 2)
+		if (ghost->state == 2 && game->invicibility <= 0)
+		{
 			game->lives--;
+			game->invicibility = 20;
+			printf("Lives %d\n", game->lives);
+		}
 	}
 	ghost->parent.coordinates = co;
 	SDL_RenderDrawLine(game->renderer, co.position.x * CELL_W, co.position.y * CELL_H, target.x * CELL_W, target.y * CELL_H);
@@ -190,8 +198,8 @@ void  render_ghost(Master*game, Ghost *ghost, int number)
 
 	pos.h = WIN_SIZE / 25;
 	pos.w = WIN_SIZE / 24;
-	pos.x = ghost->parent.coordinates.position.x * WIN_SIZE / 29;
-	pos.y = ghost->parent.coordinates.position.y * WIN_SIZE / 30;
+	pos.x = ghost->parent.coordinates.position.x * CELL_W ;
+	pos.y = ghost->parent.coordinates.position.y * CELL_H - CELL_H;
 
 	(ghost->state == 2) ? (ghost->source.y = number) : (ghost->source.y = ghost->state);
 	ghost->source.y *= ghost->source.h;

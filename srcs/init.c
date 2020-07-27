@@ -101,6 +101,8 @@ void init_player(Master *game)
 	game->entities.player.hitbox.w = w / 14;
 	game->entities.player.hitbox.h = h / 4;
 	SDL_SetRenderTarget(game->renderer, NULL);
+
+	game->invicibility = 0;
 	/*add death later maybe*/
 }
 
@@ -111,7 +113,7 @@ void init_game(Master *game)
 	game->loops[0] = menu_loop;
 	game->loops[1] = lvl_loop;
 	game->loop = game->loops[0];
-	game->pellets = 258;
+	game->pellets = 260;
 	game->lives = 3;
 }
 

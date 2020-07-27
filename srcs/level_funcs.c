@@ -53,7 +53,7 @@ int menu_loop(Master *game)
 int lvl_loop(Master *game)
 {
 	init_lvl(game);
-	int input = -1;
+	int input = -1, run = 1;
 	SDL_Scancode in;
 	while (1)
 	{
@@ -75,13 +75,20 @@ int lvl_loop(Master *game)
 					input = 1;
 			}
         }
-		if (game->lives > 0 && game->pellets > 0)
+		if (run == 1)
 		{
 			SDL_RenderClear(game->renderer);
 			SDL_RenderCopy(game->renderer, game->background, NULL, NULL);
 			update_player(game, &input);
 			update_ghosts(game);
 			SDL_RenderPresent(game->renderer);
+			if (game->invicibility > 0)
+				game->invicibility--;
+			if (game->lives <= 0 || game->pellets <= 0)
+			{
+				run = 0;
+				printf("Score : %d, Lives %d\n", game->score, game->lives);
+			}
 		}
 		SDL_Delay(200);
 	}
