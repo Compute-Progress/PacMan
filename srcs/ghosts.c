@@ -35,7 +35,6 @@ Vector2 inky(Master *game)
 
 Vector2 clyde(Master *game)
 {
-	Vector2 target;
 	double distance;
 
 	distance = pow(game->entities.ghost[3].parent.coordinates.position.x - game->entities.player.parent.coordinates.position.x, 2) +

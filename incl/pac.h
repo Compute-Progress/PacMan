@@ -21,7 +21,7 @@ int		lvl_loop(Master *game);
 void	init_game(Master *game);
 void	init_lvl(Master *game);
 void	init_player(Master *game);
-void	init_menu(Master *game, SDL_Texture *arrow, Vector2* pos);
+void	init_menu(Master *game, Vector2* pos);
 
 /******* File : updates.x  *******/
 void	update_player(Master *game, int *input);

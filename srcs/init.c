@@ -3,7 +3,7 @@
 void init_ghost(Master *game)
 {
 
-	int w, h, i = 0, n;
+	int w, h;
 	SDL_Surface *surf;
 	SDL_Texture *tex;
 	SDL_Texture *inter;
@@ -77,7 +77,7 @@ void init_ghost(Master *game)
 
 void init_player(Master *game)
 {
-	int w, h, i = 0, n;
+	int w, h;
 	SDL_Surface *surf;
 	SDL_Texture *tex;
 	SDL_Texture *inter;
@@ -108,8 +108,6 @@ void init_player(Master *game)
 
 void init_game(Master *game)
 {
-	int i = 0;
-
 	game->loops[0] = menu_loop;
 	game->loops[1] = lvl_loop;
 	game->loop = game->loops[0];
@@ -124,7 +122,7 @@ void init_lvl(Master *game)
 	parse_map(game);
 }
 
-void init_menu(Master * game, SDL_Texture *arroX, Vector2 *pos)
+void init_menu(Master * game, Vector2 *pos)
 {
 
 	SDL_Surface* surface;

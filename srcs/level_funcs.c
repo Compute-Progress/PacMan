@@ -9,7 +9,7 @@ int menu_loop(Master *game)
 	Vector2 pos[2];
 	int index;
 
-	init_menu(game, arrow_tex, pos);
+	init_menu(game, pos);
 	index = 0;
 
 	surface = IMG_Load("imgs/red_arrow.png");

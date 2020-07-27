@@ -2,8 +2,6 @@
 
 void parse_map(Master *game)
 {
-	SDL_Surface *surf;
-
 	memcpy((game->entities.map)[ 0], "2111111111111221111111111112", 28);
 	memcpy((game->entities.map)[ 1], "0............00............0", 28);
 	memcpy((game->entities.map)[ 2], "0.2112.21112.00.21112.2112.0", 28);
@@ -43,6 +41,8 @@ void parse_map(Master *game)
 Vector2 parse_input(int input)
 {
 	Vector2 in;
+	in.x = 0;
+	in.y = 0;
 
 	if (input == 0)
 	{
@@ -63,11 +63,6 @@ Vector2 parse_input(int input)
 	{
 		in.x = 0;
 		in.y = -1;
-	}
-	else if (input == -1)
-	{
-		in.x = 0;
-		in.y = 0;
 	}
 	return in;
 }

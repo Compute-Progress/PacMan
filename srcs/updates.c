@@ -64,7 +64,7 @@ void update_player(Master *game, int *input)
 	int index;
 
 	in = parse_input(*input);
-
+	index = 1;
 	handle_collisions(game, in, input);
 	pos.h = WIN_SIZE / 25;
 	pos.w = WIN_SIZE / 24;
@@ -194,7 +194,6 @@ void move_ghost(Master *game, Ghost *ghost, Vector2 target)
 void  render_ghost(Master*game, Ghost *ghost, int number)
 {
 	SDL_Rect pos;
-	int max;
 
 	pos.h = WIN_SIZE / 25;
 	pos.w = WIN_SIZE / 24;

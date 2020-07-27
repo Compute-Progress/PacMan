@@ -45,7 +45,7 @@ void draw_map_bg(Master *game)
 
 void draw_items(Master *game)
 {
-	int i = 0, n, r, inc, incy;
+	int i = 0, n;
 	SDL_Rect rect, pos;
 	rect = game->entities.player.hitbox;
 
